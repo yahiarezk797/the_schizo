@@ -34,6 +34,10 @@ def main():
         for thing in updatable:
             thing.update(dt)
         for thing in asteroids:
+            for small in shot:
+                if thing.is_colliding(small):
+                    thing.split()
+                    small.kill()
             if thing.is_colliding(player1):
                 sys.exit("Game over!")
         dt = fps.tick(60) / 1000

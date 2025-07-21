@@ -21,6 +21,6 @@ class Asteroid(CircleShape):
             new_r = self.radius - ASTEROID_MIN_RADIUS
             asteroid1 = Asteroid(self.position.x, self.position.y, new_r)
             asteroid2 = Asteroid(self.position.x, self.position.y, new_r)
-            asteroid1.velocity = d1
-            asteroid2.velocity = d2
+            asteroid1.velocity = d1 * 1.2
+            asteroid2.velocity = d2 * 1.2
             

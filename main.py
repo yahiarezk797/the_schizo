@@ -6,6 +6,7 @@ from asteroidfield import *
 import sys
 
 def main():
+    score = 0
     print("Starting Asteroids!")
     print(f"Screen width: {constants.SCREEN_WIDTH}")
     print(f"Screen height: {constants.SCREEN_HEIGHT}")
@@ -23,6 +24,8 @@ def main():
     AsteroidField.containers = (updatable)
     astroidfield1 = AsteroidField()
     player1 = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
+    with open("heigh_score.txt", "r") as f:
+        heigh_score = int(f.read())
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -38,7 +41,12 @@ def main():
                 if thing.is_colliding(small):
                     thing.split()
                     small.kill()
+                    score += 100
             if thing.is_colliding(player1):
+                if score > heigh_score:
+                    with open("heigh_score.txt", "w") as file:
+                        file.write(str(score))
+                print(f"The Heigh Score was : {heigh_score} Your score : {score}")
                 sys.exit("Game over!")
         dt = fps.tick(60) / 1000
 

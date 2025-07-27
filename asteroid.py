@@ -6,6 +6,12 @@ import random
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
+        if radius > 2 * ASTEROID_MIN_RADIUS:
+            self.score = 100
+        elif radius > ASTEROID_MIN_RADIUS:
+            self.score = 200
+        else:
+            self.score = 300 
     def draw(self, screen):
         pygame.draw.circle(screen, "white", self.position, self.radius, 2)
     def update(self, dt):
@@ -23,4 +29,5 @@ class Asteroid(CircleShape):
             asteroid2 = Asteroid(self.position.x, self.position.y, new_r)
             asteroid1.velocity = d1 * 1.2
             asteroid2.velocity = d2 * 1.2
+    
             

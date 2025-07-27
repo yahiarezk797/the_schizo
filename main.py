@@ -41,7 +41,7 @@ def main():
                 if thing.is_colliding(small):
                     thing.split()
                     small.kill()
-                    score += 100
+                    score += thing.score
             if thing.is_colliding(player1):
                 if score > heigh_score:
                     with open("heigh_score.txt", "w") as file:
